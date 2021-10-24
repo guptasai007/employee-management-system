@@ -1,0 +1,337 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package employee.salary.management.system;
+
+import java.sql.*;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
+/**
+ *
+ * @author Abhishek Gupta
+ */
+// <editor-fold defaultstate="collapsed desc="Constructor">
+public class LoginScreen extends javax.swing.JFrame  {
+    public Connection con;
+    public Statement st=null;
+    public ResultSet rs;
+    public ResultSetMetaData mtdt=null;
+    String userid=null;
+    String password=null;
+    String query;
+    String s="";
+    PreparedStatement pstmt;
+// </editor-fold
+    public LoginScreen() {
+        initComponents();
+      super.setLocationRelativeTo(null);
+        try {
+        con = DriverManager.getConnection("jdbc:mysql://den1.mysql4.gear.host/dtbs","dtbs","abcd1234@");
+        st = con.createStatement();
+        }
+        catch (SQLException sql){}
+        catch(NullPointerException n){}
+        admin.setSelected(true);
+       }  
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        usertype = new javax.swing.ButtonGroup();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        admin = new javax.swing.JRadioButton();
+        emp = new javax.swing.JRadioButton();
+        usertypescreen = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        useridscreen = new javax.swing.JLabel();
+        useridtf = new javax.swing.JTextField();
+        passwordtf = new javax.swing.JPasswordField();
+        jLabel5 = new javax.swing.JLabel();
+        loginbutton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        authenticate = new javax.swing.JLabel();
+        empforgot = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Employee Salary Management System Admin/Employee Login");
+
+        jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Employee Salary Management System");
+
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("XYZ Technologies Pvt. Ltd.");
+
+        usertype.add(admin);
+        admin.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        admin.setText("Administrator Login");
+        admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminActionPerformed(evt);
+            }
+        });
+
+        usertype.add(emp);
+        emp.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        emp.setText("Employee Login");
+        emp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empActionPerformed(evt);
+            }
+        });
+
+        usertypescreen.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        usertypescreen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        usertypescreen.setText("Administrator Login");
+
+        useridscreen.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        useridscreen.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        useridscreen.setText("Administrator ID");
+
+        useridtf.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+
+        passwordtf.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Password");
+
+        loginbutton.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        loginbutton.setText("Login");
+        loginbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginbuttonActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
+        jLabel3.setText("16SCSE113001");
+
+        authenticate.setFont(new java.awt.Font("Calibri", 0, 17)); // NOI18N
+
+        empforgot.setFont(new java.awt.Font("Calibri", 0, 10)); // NOI18N
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(useridscreen, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(passwordtf, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                                .addComponent(useridtf))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(loginbutton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(empforgot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jSeparator2)
+                    .addComponent(jSeparator1)
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSeparator3)
+                    .addComponent(usertypescreen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(108, 108, 108)
+                                .addComponent(admin)
+                                .addGap(18, 18, 18)
+                                .addComponent(emp))
+                            .addComponent(authenticate, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addComponent(jLabel3)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(admin)
+                    .addComponent(emp))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(usertypescreen, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(useridscreen, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(useridtf, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordtf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(authenticate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(loginbutton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(empforgot, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
+        );
+
+        pack();
+    }// </editor-fold>                        
+
+    private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {                                            
+       
+        try{
+      userid=useridtf.getText();
+     password=String.valueOf(passwordtf.getPassword());
+     } catch(NullPointerException n){userid=""; password="";}
+     try {
+        if(admin.isSelected()==true) {
+         pstmt = con.prepareStatement("select adminid from admin where adminid = ? and password = ?");
+          pstmt.setString(1,userid);
+        }
+        else if(emp.isSelected()==true){
+         pstmt = con.prepareStatement("select empid from employees where empid = ? and password = ?");
+          pstmt.setInt(1,Integer.parseInt(userid));
+        }
+         pstmt.setString(2,password);
+         rs=pstmt.executeQuery();
+         while(rs.next()) 
+        s=String.valueOf(rs.getObject(1));
+         System.out.println(s);
+         if (s.equals(userid)){
+             //User Authenticated//
+             authenticate.setText("User Authenticated!");
+             if(admin.isSelected()==true) {
+                 switch (useridtf.getText()) {
+                     case "empmgr":
+                         empmgr e = new empmgr();
+                         e.setVisible(true);
+                         this.setVisible(false);
+                         break;
+                     case "paymgr":
+                         paymgr p = new paymgr();
+                         p.setVisible(true);
+                         this.setVisible(false);
+                         break;
+                 }
+             }
+             else if(emp.isSelected()==true){
+             employee m = new employee(Integer.parseInt(useridtf.getText()));
+             m.setVisible(true);  
+             this.setVisible(false);
+             }
+             s=""; //for next use of variable//
+         }
+         else if(!s.equals(userid)) {
+             authenticate.setText("Invalid ID or Password!");
+             if(emp.isSelected()==true) empforgot.setText("*Contact Employee Manager incase of Forgotten Password");
+             s=""; //for next use of variable//
+         }
+     
+     } catch(SQLException s){s.printStackTrace();}
+            catch(NumberFormatException n){authenticate.setText("Invalid ID or Password!"); empforgot.setText("*Contact Employee Manager incase of Forgotten Password");}
+            //catch(NullPointerException n){authenticate.setText("You ain't connected to Internet!");}
+    }                                           
+
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {                                      
+    usertypescreen.setText("Administrator Login");
+    useridscreen.setText("Administrator ID");
+    useridtf.setText("");
+    passwordtf.setText("");
+    authenticate.setText("");
+    empforgot.setText("");
+    }                                     
+
+    private void empActionPerformed(java.awt.event.ActionEvent evt) {                                    
+    usertypescreen.setText("Employee Login");
+    useridscreen.setText("Employee ID");
+    useridtf.setText("");
+    passwordtf.setText("");
+    authenticate.setText("");
+    empforgot.setText("");
+    }                                   
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+       
+       /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LoginScreen().setVisible(true);
+            }
+        });
+        
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JRadioButton admin;
+    private javax.swing.JLabel authenticate;
+    private javax.swing.JRadioButton emp;
+    private javax.swing.JLabel empforgot;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JButton loginbutton;
+    private javax.swing.JPasswordField passwordtf;
+    private javax.swing.JLabel useridscreen;
+    private javax.swing.JTextField useridtf;
+    private javax.swing.ButtonGroup usertype;
+    private javax.swing.JLabel usertypescreen;
+    // End of variables declaration                   
+}
